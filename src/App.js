@@ -54,10 +54,17 @@ class App extends Component {
         <BottomContainer>
           <CdImg src={cd} alt="" />
           <Heading>Now Playing</Heading>
-          <Audio controls>
-            <source src={currentlyPlaying} type="audio/mpeg" />
-            Your browser does not support the audio tag.
-          </Audio>
+          {currentlyPlaying ? (
+            <audio controls autoPlay>
+              <source src={currentlyPlaying} type="audio/mpeg" />
+              Your browser does not support the audio tag.
+            </audio>
+          ) : (
+            <Audio controls>
+              <source src="" type="audio/mpeg" />
+              Your browser does not support the audio tag.
+            </Audio>
+          )}
           <DiscoGraphy>
             <h3>DiscoGraphy</h3>
             <UnorderedList>
