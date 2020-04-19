@@ -1,0 +1,27 @@
+[
+    {
+      "album": "Some Nights",
+      "release": 2013,
+      "songs": [{
+        "name": "beam",
+        "src": "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg"
+      },
+      {
+        "name": "alien",
+        "src": "https://actions.google.com/sounds/v1/science_fiction/alien_song.ogg"
+      }
+    ]
+    },
+    {
+      "album": "Love Yourself",
+      "release": 2017,
+      "songs": [{
+        "name": "windchime",
+        "src": "https://actions.google.com/sounds/v1/science_fiction/windchime_drone.ogg"
+      },
+      {
+        "name": "alien song",
+        "src": "https://actions.google.com/sounds/v1/science_fiction/alien_song.ogg"
+      }]
+    }
+]

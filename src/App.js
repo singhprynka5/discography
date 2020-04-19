@@ -1,26 +1,108 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./boy.png";
+import cd from "./cd.png";
+import playlist from "./songs/playlist.json";
+import {
+  TopContainer,
+  BottomContainer,
+  Logo,
+  CdImg,
+  Button,
+  UnorderedList,
+  Heading,
+  Audio,
+  DiscoGraphy,
+  List,
+  SongList,
+  Details
+} from "./components/Styling";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    playlistData: playlist,
+    selectedAlbumSongs: [],
+    selectedAlbum: "",
+    currentlyPlaying: ""
+  };
+
+  handleListen = (songs, name) => {
+    this.setState({
+      selectedAlbumSongs: songs,
+      selectedAlbum: name
+    });
+  };
+
+  handleSongSelection = song => {
+    this.setState({
+      currentlyPlaying: song
+    });
+  };
+
+  render() {
+    const {
+      playlistData,
+      selectedAlbumSongs,
+      selectedAlbum,
+      currentlyPlaying
+    } = this.state;
+
+    return (
+      <>
+        <TopContainer>
+          <Logo src={logo} alt="" />
+        </TopContainer>
+        <BottomContainer>
+          <CdImg src={cd} alt="" />
+          <Heading>Now Playing</Heading>
+          <Audio controls>
+            <source src={currentlyPlaying} type="audio/mpeg" />
+            Your browser does not support the audio tag.
+          </Audio>
+          <DiscoGraphy>
+            <h3>DiscoGraphy</h3>
+            <UnorderedList>
+              {playlistData.map((data, index) => {
+                return (
+                  <List key={index}>
+                    {" "}
+                    {data.album} = {data.release}
+                    <Button>Buy</Button>
+                    <Button
+                      onClick={() => this.handleListen(data.songs, data.album)}
+                    >
+                      Listen
+                    </Button>
+                  </List>
+                );
+              })}
+            </UnorderedList>
+          </DiscoGraphy>
+          <Details>
+            <h3>{selectedAlbum}</h3>
+            <UnorderedList>
+              {selectedAlbumSongs && selectedAlbumSongs.length > 0 ? (
+                <>
+                  {selectedAlbumSongs.map((songs, index) => {
+                    return (
+                      <SongList
+                        key={index}
+                        onClick={() => this.handleSongSelection(songs.src)}
+                      >
+                        <span>
+                          <i className="fa fa-play"></i>
+                          {songs.name}
+                        </span>
+                      </SongList>
+                    );
+                  })}
+                </>
+              ) : null}
+            </UnorderedList>
+          </Details>
+        </BottomContainer>
+      </>
+    );
+  }
 }
 
 export default App;
