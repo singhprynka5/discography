@@ -49,6 +49,8 @@ export const Audio = styled.audio`
 `;
 
 export const DiscoGraphy = styled.div`
+  float: left;
+  margin-left: -25%;
 `;
 
 export const List = styled.li`
@@ -60,5 +62,6 @@ export const SongList = styled.li`
 `;
 
 export const Details = styled.div`
-  float: right
+  float: right;
+  margin-right: 45%;
 `;
